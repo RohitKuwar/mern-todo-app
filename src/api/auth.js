@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api/auth",
+  baseURL: process.env.REACT_APP_API_URL + '/api/auth' || "http://localhost:8000/api/auth",
   withCredentials: true, // send the refresh cookie
 });
 
