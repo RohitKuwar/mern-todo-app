@@ -1,26 +1,24 @@
-import axios from "axios";
+// const baseURL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
-// Base URL of your backend
-// If backend runs on localhost:8000, use that
-const baseURL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+import axios from 'axios';
 
+// axios instance for todos (we'll add Authorization header manually)
 const API = axios.create({
-  baseURL,
-  // if you use credentials/cookies set withCredentials:true and configure server accordingly
-  // withCredentials: true
+  baseURL: 'http://localhost:8000/api/todos',
+  withCredentials: true,
 });
 
-// Get all todos
-export const getTodos = () => API.get("/");
+export const getTodos = (accessToken) =>
+  API.get('/', { headers: { Authorization: `Bearer ${accessToken}` } });
 
-// Create new todo
-export const createTodo = (title) => API.post("/", { title });
+export const createTodo = (accessToken, title) =>
+  API.post('/', { title }, { headers: { Authorization: `Bearer ${accessToken}` } });
 
-// Update todo (partial)
-export const patchTodo = (id, updates) => API.patch(`/${id}`, updates);
+export const patchTodo = (accessToken, id, updates) =>
+  API.patch(`/${id}`, updates, { headers: { Authorization: `Bearer ${accessToken}` } });
 
-// Delete one
-export const deleteTodo = (id) => API.delete(`/${id}`);
+export const deleteTodo = (accessToken, id) =>
+  API.delete(`/${id}`, { headers: { Authorization: `Bearer ${accessToken}` } });
 
-// Clear all (optional)
-export const clearAllTodos = () => API.delete("/");
+export const clearAllTodos = (accessToken) =>
+  API.delete('/', { headers: { Authorization: `Bearer ${accessToken}` } });
