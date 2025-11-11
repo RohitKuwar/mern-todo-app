@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // axios instance for todos (we'll add Authorization header manually)
 const API = axios.create({
-  baseURL: 'http://localhost:8000/api/todos',
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api/todos",
   withCredentials: true,
 });
 
