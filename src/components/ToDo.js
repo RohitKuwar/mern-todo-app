@@ -13,6 +13,7 @@ export default function TodosPage() {
   useEffect(() => {
     if (!accessToken) return;
     fetchTodos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
 
   const fetchTodos = async () => {
